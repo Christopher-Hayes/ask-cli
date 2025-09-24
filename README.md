@@ -6,7 +6,7 @@ A lightweight bash script for querying AI models via the OpenRouter API, optimiz
 
 - Uses 1Password to manage API keys.
 
-****To set up:*
+***To set up:
 
 1. Put your OpenRouter API key in 1Password.
 2. Put a env variable in your `.bashrc` for `OPENROUTER_ASK_REF` that has the 1Password entry's "Secret Reference."
@@ -164,7 +164,8 @@ docker ps -a | ask "Which containers are using the most memory?"
 
 ### API access
 - OpenRouter API key (get one at [openrouter.ai](https://openrouter.ai))
-- Set as environment variable: `OPENROUTER_API_KEY`
+- Add API key to 1Password
+- Add env variable for 1Password entry "Secret Reference": `OPENROUTER_ASK_REF`
 
 ## License
 
