@@ -2,21 +2,31 @@
 
 A lightweight bash script for querying AI models via the OpenRouter API, optimized for direct, executable output.
 
+## Fork personal tweaks
+
+- Uses 1Password to manage API keys.
+
+*****To set up:**
+
+1. Put your OpenRouter API key in 1Password.
+2. Put a env variable in your `.bashrc` for `OPENROUTER_ASK_REF` that has the 1Password entry's "Secret Reference."
+
+- Changes default model to Sonnet 4 (Personal preference).
+
 ## Quick start
 
 ```bash
 # Clone and setup
-git clone https://github.com/kagisearch/ask.git
+git clone git@github.com:Christopher-Hayes/ask-cli.git
 cd ask
 
 chmod +x ask
-sudo cp ask /usr/local/bin/
-
-
-# Make sure you have you OpenRouter API key
-export OPENROUTER_API_KEY="your-api-key-here"
+ln -s $(pwd)/ask /usr/local/bin/ask
+```
 
 # Test it
+
+```bash
 > ask remove lines in file1 that appear in file2
 
 grep -vFf file2 file1 > file3 && mv file3 file1
@@ -90,9 +100,9 @@ cat script.py | ask "Review this code"
 
 | Option | Description |
 |--------|-------------|
-| `-c` | Use Mercury Coder (default) |
+| `-s` | Use Claude Sonnet 4 (default) |
+| `-c` | Use Mercury Coder |
 | `-g` | Use Google Gemini 2.5 Flash |
-| `-s` | Use Claude Sonnet 4 |
 | `-k` | Use Moonshotai Kimi K2 |
 | `-q` | Use Qwen3 235B |
 | `-m MODEL` | Use custom model |

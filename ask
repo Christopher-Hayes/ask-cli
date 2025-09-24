@@ -5,10 +5,18 @@
 
 set -euo pipefail
 
+# Local API key variables only.
+OPENROUTER_API_KEY=""
+
 # Check for API key
 if [ -z "${OPENROUTER_API_KEY:-}" ]; then
+  # Attempt to fetch key from 1Pass
+  OPENROUTER_API_KEY=$(op read "$OPENROUTER_ASK_REF")
+
+  if [ -z "${OPENROUTER_API_KEY:-}" ]; then
     echo "Error: OPENROUTER_API_KEY environment variable is not set" >&2
     exit 1
+  fi
 fi
 
 # Model shortcuts function
@@ -23,7 +31,8 @@ get_model() {
 }
 
 # Default values
-MODEL="inception/mercury-coder:nitro"
+#MODEL="inception/mercury-coder:nitro"
+MODEL="anthropic/claude-sonnet-4:nitro"
 SYSTEM_PROMPT=""
 PROMPT=""
 STREAMING=false
